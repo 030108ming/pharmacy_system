@@ -1,0 +1,5 @@
+grpcio==1.62.0
+grpcio-tools==1.62.0
+requests==2.31.0
+matplotlib==3.8.0
+psycopg2-binary==2.9.9

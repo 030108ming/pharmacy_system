@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package pharmacy;
+
+service PharmacyService {
+  rpc AddDrug(AddDrugRequest) returns (DrugResponse);
+  rpc GetDrug(GetDrugRequest) returns (DrugResponse);
+  rpc UpdateStock(UpdateStockRequest) returns (DrugResponse);
+  rpc DeleteDrug(DeleteDrugRequest) returns (DeleteResponse);
+  rpc ListDrugs(ListDrugsRequest) returns (ListDrugsResponse);
+  rpc GetLowStock(LowStockRequest) returns (ListDrugsResponse);
+}
+
+message Drug {
+  int32 id = 1;
+  string name = 2;
+  int32 quantity = 3;
+  float price = 4;
+  string expiry_date = 5;
+  string category = 6;
+}
+
+message AddDrugRequest {
+  string name = 1;
+  int32 quantity = 2;
+  float price = 3;
+  string expiry_date = 4;
+  string category = 5;
+}
+
+message GetDrugRequest {
+  int32 id = 1;
+}
+
+message UpdateStockRequest {
+  int32 id = 1;
+  int32 quantity = 2;
+}
+
+message DeleteDrugRequest {
+  int32 id = 1;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message ListDrugsRequest {}
+
+message LowStockRequest {
+  int32 threshold = 1;
+}
+
+message ListDrugsResponse {
+  repeated Drug drugs = 1;
+}
+
+message DrugResponse {
+  bool success = 1;
+  string message = 2;
+  Drug drug = 3;
+}
